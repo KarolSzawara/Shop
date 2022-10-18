@@ -1,0 +1,19 @@
+.sidenav{
+    width: available;
+     height: 92vh;
+}
+.sidenav-content{
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    place-content: flex-start;
+    align-items: flex-start;
+}
+.sidenav-card{
+    width: 15vh;
+    font-size: large;
+    
+}
+.sidenav-card:hover{
+    background-color:#3f51b54b;
+}

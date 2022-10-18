@@ -1,0 +1,56 @@
+.main-div{
+    height: 88vh;
+    width: 150vh;
+    margin: auto;
+   
+    background: rgb(238, 237, 237);
+  }
+  .cart-div{
+    width: 90vh;
+    
+  }
+  .cart-text{
+    font-weight: bold;
+  }
+  .cart-item{
+    height: 3vh;
+  }
+  .grid-list{
+    
+    width: 100%;
+    
+ }
+ .mat-grid-cart {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.grid-list{
+  align-items: flex-start;
+}
+.allprize-class{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+}
+.prize-card{
+  width: 100%;
+}

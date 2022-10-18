@@ -1,0 +1,10 @@
+.productlist{
+    margin-bottom:8vh ;
+}
+.product{
+    
+}
+.product:hover{
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+}

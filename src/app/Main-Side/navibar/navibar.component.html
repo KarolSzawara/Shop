@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="toolbar-size">
+  <button mat-icon-button class="example-icon" (click)="clickMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+<div class="search-form">
+    <mat-form-field  class="search-form-input" appearance="fill">
+      <mat-label  >Szukaj</mat-label>
+      <input  type="Szukaj" matInput  >
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+</div>
+<div class="button-padding">
+  <button mat-icon-button  >
+    <mat-icon>person</mat-icon>
+  </button>
+  
+  <button mat-icon-button >
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</div>
+</mat-toolbar>
+<app-side-nav></app-side-nav>

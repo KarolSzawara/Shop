@@ -1,0 +1,12 @@
+<mat-sidenav-container class='sidenav' autosize >
+  <mat-sidenav #sidenav mode="over">
+    <div class="sidenav-content">
+    <button mat-flat-button class="sidenav-card" *ngFor="let categori of categories">
+      {{categori.categoryName}}
+    </button>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content >
+    <app-product-page></app-product-page>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,20 @@
+.card{
+    width: content-box;
+    height: 41vh;
+    margin-top: 0%;
+    margin-left: 3%;
+    margin-right: 3%;
+    
+}
+.card:hover{
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
+}
+.bottomtext{
+    position:absolute;                  /* added */
+   bottom:0;                           /* added */
+   
+}
+.image{
+    height: 75%;
+}
