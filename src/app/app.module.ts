@@ -25,6 +25,7 @@ import { LoginSideComponent } from './login-side/login-side.component';
 import { RegistSideComponent } from './Regist-side/regis-side/regist-side.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     GalleryModule,
     MatTabsModule,
-    HttpClientModule
+    HttpClientModule,MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

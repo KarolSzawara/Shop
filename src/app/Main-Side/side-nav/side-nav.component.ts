@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Category } from '../interfaces/category';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../services/category/category.service';
 import { SidenavServiceService } from '../services/side-nav/sidenav-service.service';
 @Component({
   selector: 'app-side-nav',
@@ -15,7 +15,7 @@ export class SideNavComponent implements OnInit {
 
   constructor(private sideNavService:SidenavServiceService,private categoryService:CategoryService) { }
   categories!:Category[];
-
+  categoryDownload:boolean=false;
   ngOnInit() {
     this.sideNavService.sideNavToggleSubject.subscribe(()=> {
       if(this.sidenav)
@@ -34,7 +34,8 @@ export class SideNavComponent implements OnInit {
       
 
     },()=>{
-      console.info('complete') 
+      this.categoryDownload=true;
+      
     })
   }
 

@@ -1,4 +1,8 @@
-<mat-sidenav-container class='sidenav' autosize >
+<div class="loading" *ngIf="!categoryDownload; else elseBlock">
+<mat-spinner ></mat-spinner>
+</div>
+<ng-template #elseBlock>
+<mat-sidenav-container #elseBlock class='sidenav' autosize >
   <mat-sidenav #sidenav mode="over">
     <div class="sidenav-content">
     <button mat-flat-button class="sidenav-card" *ngFor="let categori of categories">
@@ -10,3 +14,4 @@
     <app-product-page></app-product-page>
   </mat-sidenav-content>
 </mat-sidenav-container>
+</ng-template>
