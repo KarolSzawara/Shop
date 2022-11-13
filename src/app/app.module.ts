@@ -26,6 +26,8 @@ import { RegistSideComponent } from './Regist-side/regis-side/regist-side.compon
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSelectModule,
     GalleryModule,
     MatTabsModule,
-    HttpClientModule,MatProgressSpinnerModule
+    HttpClientModule,MatProgressSpinnerModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

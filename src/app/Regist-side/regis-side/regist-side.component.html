@@ -1,7 +1,9 @@
 <mat-card style=" width: 40%; margin: auto;margin-top: 2%;">
     <mat-card-header class="text-reje">Rejestracja</mat-card-header>
+    <form [formGroup]="registerForm" (submit)="submitRegister()">
     <mat-card-content class="rejestr-card">
     <mat-tab-group mat-align-tabs="start" style="width: 100%;">
+        
         <mat-tab label="Osoba prywatna">
             
         </mat-tab>
@@ -10,71 +12,108 @@
             <mat-form-field appearance="outline" class="button-100">
             
                 <mat-label>Nazwa Firmy</mat-label>
-                <input matInput>
+                <input matInput type="text" id="registerCompanyName" placeholder="Nazwa firmy" formControlName="registerCompanyName">
+                <mat-error *ngIf="registerForm?.get('registerCompanyName')?.errors?.['required']">Pole jest puste</mat-error>
+                <mat-error *ngIf="registerForm?.get('registerCompanyName')?.errors?.['lenght']">Maksymalna ilość znaków to 50</mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="button-100">
             
                 <mat-label>Nip</mat-label>
-                <input matInput>
+                <input matInput type="text" id="registerNip" placeholder="Nip" formControlName="registerNip">
+                <mat-error *ngIf="registerForm?.get('registerNip')?.errors?.['required']">Pole jest puste</mat-error>
+                <mat-error *ngIf="registerForm?.get('registerNip')?.errors?.['pattern']">Niepoprawny nip, powinien posiadać 9 cyfr </mat-error>
               </mat-form-field>
+              
               </div>
         </mat-tab>
       </mat-tab-group>
-      <mat-form-field appearance="outline" class="button-100">
+      <div style="width:100%">
+      <mat-form-field appearance="outline" style="width:30%; margin-right: 2%;" >
             
         <mat-label>Imie</mat-label>
-        <input matInput>
+        <input matInput type="text" id="registerFirstName" placeholder="Imie" formControlName="registerFirstName">
+        <mat-error *ngIf="registerForm?.get('registerFirstName')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerFirstName')?.errors?.['lenght']">Maksymalna ilość znaków to 50</mat-error>
       </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 68%;" >
+            
+        <mat-label>Nazwisko</mat-label>
+        <input matInput type="text" id="registerLastName" placeholder="Nazwisko" formControlName="registerLastName">
+        <mat-error *ngIf="registerForm?.get('registerLastName')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerLastName')?.errors?.['lenght']">Maksymalna ilość znaków to 50</mat-error>
+      </mat-form-field>
+      </div>
       <div style="width:100%">
       <mat-form-field appearance="outline" style="width:70%; margin-right: 2%;">
             
         <mat-label>Ulica</mat-label>
-        <input matInput>
+        <input matInput type="text" id="registerStreet" placeholder="Ulica" formControlName="registerStreet">
+        <mat-error *ngIf="registerForm?.get('registerStreet')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerStreet')?.errors?.['lenght']">Maksymalna ilość znaków to 50</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" style="width:28%">
             
         <mat-label>Nr</mat-label>
-        <input matInput>
+        <input matInput type="number" id="registerStreetNumber" placeholder="Numer" formControlName="registerStreetNumber">
+        <mat-error *ngIf="registerForm?.get('registerStreetNumber')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerStreetNumber')?.errors?.['lenght']">Maksymalna ilość znaków to 10</mat-error>
       </mat-form-field>
       </div>
       <mat-form-field appearance="outline" class="button-100">
             
         <mat-label>Nr mieszkania</mat-label>
-        <input matInput type="number">
+        <input matInput type="number" id="registerFlatNumber" placeholder="Numer mieszkania" formControlName="registerFlatNumber">
+        <mat-error *ngIf="registerForm?.get('registerFlatNumber')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerFlatNumber')?.errors?.['lenght']">Maksymalna ilość znaków to 10</mat-error>
       </mat-form-field>
       <div style="width:100%">
       <mat-form-field appearance="outline" style="width:30%; margin-right: 2%;">
             
         <mat-label>Kod pocztowy</mat-label>
-        <input matInput type="number" maxlength="6">
+        <input matInput  maxlength="6" id="registerPostNumber" placeholder="Kod pocztowy" formControlName="registerPostNumber">
+        <mat-error *ngIf="registerForm?.get('registerPostNumber')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerPostNumber')?.errors?.['pattern']">Niepoprawny kod pocztowy,przykład xx-xxx</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" style="width:68%">
             
         <mat-label>Miejscowość</mat-label>
-        <input matInput>
+        <input matInput id="registerPostTown" placeholder="Adres" formControlName="registerPostTown">
+        <mat-error *ngIf="registerForm?.get('registerPostTown')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerPostTown')?.errors?.['lenght']">Maksymalna ilość znaków to 50</mat-error>
       </mat-form-field>
       </div>
       <mat-form-field appearance="outline" class="button-100">
             
         <mat-label>Numer telefonu</mat-label>
-        <input matInput>
+        <input matInput type="number" id="registerPhoneNumber" placeholder="Numer telefonu" formControlName="registerPhoneNumber">
+        <mat-error *ngIf="registerForm?.get('registerPhoneNumber')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerPhoneNumber')?.errors?.['lenght']">Maksymalna ilość znaków to 9</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="button-100">
             
         <mat-label>E-mail</mat-label>
-        <input matInput>
+        <input matInput id="registerEmail" placeholder="E-mail" formControlName="registerEmail">
+        <mat-error *ngIf="registerForm?.get('registerEmail')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerEmail')?.errors?.['pattern']">Niepoprawny email,przykład example@example.pl</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="button-100">
             
         <mat-label>Hasło</mat-label>
-        <input matInput>
+        <input minlength="8" type="password" matInput id="registerPassword" placeholder="Hasło" formControlName="registerPassword">
+        <mat-error *ngIf="registerForm?.get('registerPassword')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerPassword')?.errors?.['lenght']">Hasło powino mieć od 8 do 50 znaków</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="button-100">
             
         <mat-label>Powtórz hasło</mat-label>
-        <input matInput>
+        <input  type="password" matInput id="registerConfirmPassword" placeholder="Powtórz hasło" formControlName="registerConfirmPassword">
+        <mat-error *ngIf="registerForm?.get('registerConfirmPassword')?.errors?.['required']">Pole jest puste</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerConfirmPassword')?.errors?.['maxlength']">Hasło powino mieć od 8 do 50 znaków</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerConfirmPassword')?.errors?.['minlength']">Hasło powino mieć od 8 do 50 znaków</mat-error>
+        <mat-error *ngIf="registerForm?.get('registerConfirmPassword')?.errors?.['confirmedValidator']">Hasła nie są takie same</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="button-rej" >Zarejestruj</button>
+      <button  type="submit" mat-raised-button color="primary" class="button-rej" >Zarejestruj</button>
       
       </mat-card-content>
+    </form>
 </mat-card>
