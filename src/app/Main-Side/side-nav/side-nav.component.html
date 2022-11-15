@@ -5,13 +5,14 @@
 <mat-sidenav-container #elseBlock class='sidenav' autosize >
   <mat-sidenav #sidenav mode="over">
     <div class="sidenav-content">
-    <button mat-flat-button class="sidenav-card" *ngFor="let categori of categories">
+    <button mat-flat-button (click)="onCategory(categori)" class="sidenav-card" *ngFor="let categori of categories"  >
       {{categori.categoryName}}
     </button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content >
-   <app-regist-side></app-regist-side>
+   <!--<app-product-page [categoryId]="categoryId"></app-product-page> <app-verfication></app-verfication>>-->
+   <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
 </ng-template>

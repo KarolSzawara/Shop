@@ -27,6 +27,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VerficationComponent } from './Login-Side/verfication/verfication.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CartSideComponent,
     CartItemComponent,
     LoginSideComponent,
-    RegistSideComponent
+    RegistSideComponent,
+    VerficationComponent
   ],
   imports: [
     BrowserModule,

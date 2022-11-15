@@ -10,10 +10,12 @@ import { SidenavServiceService } from '../services/side-nav/sidenav-service.serv
 })
 export class SideNavComponent implements OnInit {
 
+
   @ViewChild('sidenav') public sidenav?: MatSidenav;
   mobileQuery!: MediaQueryList;
 
   constructor(private sideNavService:SidenavServiceService,private categoryService:CategoryService) { }
+  categoryId:number=0;
   categories!:Category[];
   categoryDownload:boolean=false;
   ngOnInit() {
@@ -38,5 +40,8 @@ export class SideNavComponent implements OnInit {
       
     })
   }
+  onCategory(cat: Category) {
+    this.categoryId=cat.id
+    }
 
 }
