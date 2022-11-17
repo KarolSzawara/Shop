@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginServiceService } from 'src/app/login-service/login-service.service';
-import { RegisterProfile } from 'src/app/login-service/registerprofile';
+import { LoginServiceService } from 'src/app/Login-Side/login-service/login-service.service';
+import { RegisterProfile } from 'src/app/Login-Side/login-service/registerprofile';
 import { ConfirmedValidator } from './confirmed.validator';
 @Component({
   selector: 'app-regist-side',

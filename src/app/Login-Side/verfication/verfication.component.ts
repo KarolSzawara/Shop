@@ -1,23 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoginServiceService } from 'src/app/Login-Side/login-service/login-service.service';
 @Component({
   selector: 'app-verfication',
   templateUrl: './verfication.component.html',
   styleUrls: ['./verfication.component.scss']
 })
 export class VerficationComponent implements OnInit {
-  
-  constructor(private route:ActivatedRoute) { 
+  token!:string;
+  event!:boolean
+  serviceDone!:boolean
+  constructor(private route:ActivatedRoute,private loginService:LoginServiceService,private routerSides: Router) { 
     this.routeSub=this.route.params.subscribe(params=>{
-      console.log(params);
-      console.log(params['id'])
+     this.token=params['id']
       
     })
+    
+    this.loginService.verficationUser(this.token).subscribe(response=>{
+      this.event=true;
+    },(error)=>{
+      this.event=false
+      this.serviceDone=true
+    },()=>{
+      this.serviceDone=true
+    })
+    
   }
   private routeSub!: Subscription;
   ngOnInit(): void {
     
   }
-
+  ngOnDestroy(): void {
+   this.routeSub.unsubscribe();  
+  }
+  verficationDone(){
+    this.routerSides.navigate(['login']);
+  }
 }

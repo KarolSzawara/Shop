@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../interfaces/product';
 import { ProductView } from '../interfaces/productView';
 import { ProductListService } from '../services/product-offer/product-list.service';
@@ -10,14 +11,18 @@ import { ProductListService } from '../services/product-offer/product-list.servi
 })
 export class ProductPageComponent implements OnInit {
   responeComplete:boolean=false;
-  @Input() categoryId!:number
-  constructor(private productListService:ProductListService) { }
+  categoryId!:number
+  constructor(private productListService:ProductListService,private route:ActivatedRoute,private router: Router) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+  }
   productList!:ProductView[]
   ngOnInit(): void {
+    this.route.params.subscribe(params=>{
+      this.categoryId=params['id']
       
-  }
-  ngOnChanges(): void {
-    console.log(this.categoryId);
+    })
+    if(this.categoryId==null)this.categoryId=0;
     
     this.productListService.getCategories(this.categoryId).subscribe((response)=>{
       this.productList=response;
@@ -28,6 +33,10 @@ export class ProductPageComponent implements OnInit {
     },()=>{
       this.responeComplete=true
     })
+    
+    
+  }
+  ngOnChanges(): void {
     
   }
 

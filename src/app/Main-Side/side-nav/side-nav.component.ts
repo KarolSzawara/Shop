@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { Category } from '../interfaces/category';
 import { CategoryService } from '../services/category/category.service';
 import { SidenavServiceService } from '../services/side-nav/sidenav-service.service';
@@ -14,7 +15,7 @@ export class SideNavComponent implements OnInit {
   @ViewChild('sidenav') public sidenav?: MatSidenav;
   mobileQuery!: MediaQueryList;
 
-  constructor(private sideNavService:SidenavServiceService,private categoryService:CategoryService) { }
+  constructor(private sideNavService:SidenavServiceService,private categoryService:CategoryService,private router: Router) { }
   categoryId:number=0;
   categories!:Category[];
   categoryDownload:boolean=false;
@@ -41,7 +42,9 @@ export class SideNavComponent implements OnInit {
     })
   }
   onCategory(cat: Category) {
-    this.categoryId=cat.id
+    console.log("blad");
+    
+      this.router.navigate(['category/'+cat.id]);
     }
 
 }

@@ -1,8 +1,15 @@
 
-<mat-card class="confirm">
+<mat-card class="confirm" *ngIf="event&&serviceDone">
     <div class="place" >
     <mat-card-content style="font-size: large;">Werfikacja email została wykonana poprawnie</mat-card-content>
-    <button mat-fab style="background-color:green ;"><mat-icon>done</mat-icon></button>
+    <button mat-fab style="background-color:green ;" (click)="verficationDone()"><mat-icon>done</mat-icon></button>
+    </div>
+    
+</mat-card>
+<mat-card class="confirm" *ngIf="!event&&serviceDone">
+    <div class="place" >
+    <mat-card-content style="font-size: large;">Werfikacja email nie została wykonana</mat-card-content>
+    <button mat-fab style="background-color:red ;"><mat-icon>cancel</mat-icon></button>
     </div>
     
 </mat-card>

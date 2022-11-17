@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SidenavServiceService } from '../services/side-nav/sidenav-service.service';
 
 @Component({
@@ -8,11 +9,17 @@ import { SidenavServiceService } from '../services/side-nav/sidenav-service.serv
 })
 export class NavibarComponent implements OnInit {
 
-  constructor(private sideNavService: SidenavServiceService) { }
+  constructor(private sideNavService: SidenavServiceService,private router: Router) { }
 
   ngOnInit() {
   }
   clickMenu() { 
     this.sideNavService.toggle();
+  }
+  goToCart(){
+    this.router.navigate(['cart']);
+  }
+  returnToMainPage(){
+    this.router.navigate(['']);
   }
 }
