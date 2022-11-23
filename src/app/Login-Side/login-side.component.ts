@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginUser } from './interface/login-user';
-import { LoginServiceService } from './login-service/login-service.service';
+import { LoginUser } from 'src/app/Login-Side/interface/login-user';
+
+import { ReturnToken } from 'src/app/Login-Side/interface/return-token';
+
+import { TokenServiceService } from 'src/app/Login-Side/loginservices/token-service.service';
 
 @Component({
   selector: 'app-login-side',
@@ -11,32 +14,41 @@ import { LoginServiceService } from './login-service/login-service.service';
 })
 export class LoginSideComponent implements OnInit {
 
-  user!:LoginUser
-
-  loginForm = new FormGroup({
-    loginEmail: new FormControl('', [Validators.required, Validators.email]),
-    loginPassword: new FormControl('', [Validators.required])
-  });
+  tokens!:ReturnToken
+  public loginForm :FormGroup
+  errorMessage!:string
 
 
-  constructor(private router: Router,private loginService:LoginServiceService) { }
+  constructor(private router: Router,private loginService:TokenServiceService,public fb: FormBuilder) {
+    this.loginForm=fb.group({
+      loginEmail: new FormControl('', [Validators.required, Validators.email]),
+      loginPassword: new FormControl('', [Validators.required])
+    })
+   }
 
   ngOnInit(): void {
+    this.loginService.isLoggedin$.subscribe(info=>{
+      if(info==true){
+        this.router.navigate([''])
+      }
+    })
   }
 
   goRegister(){
     this.router.navigate(['register'])
   }
-  get loginEmail() {
-    return this.loginForm.get('loginEmail');
-  }
-
-  get loginPassword() {
-    return this.loginForm.get('loginPassword');
-  }
+ 
   loginUser(){
-    this.user.email=this.loginForm.get("loginEmail")!.value
-    this.user.password=this.loginForm.get("loginPassword")!.value
-        
+    let user =new LoginUser()
+    user.email=this.loginForm.get("loginEmail")!.value
+    user.password=this.loginForm.get("loginPassword")!.value
+    this.loginService.login(user).subscribe((response)=>{
+       console.log(response);
+       
+    },(error)=>{
+      this.errorMessage=error.error.message
+    },()=>{
+      this.router.navigate([''])
+    })
   }
 }

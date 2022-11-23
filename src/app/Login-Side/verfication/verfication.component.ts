@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LoginServiceService } from 'src/app/Login-Side/login-service/login-service.service';
+import { LoginService } from '../loginservices/login-service';
 @Component({
   selector: 'app-verfication',
   templateUrl: './verfication.component.html',
@@ -11,7 +11,7 @@ export class VerficationComponent implements OnInit {
   token!:string;
   event!:boolean
   serviceDone!:boolean
-  constructor(private route:ActivatedRoute,private loginService:LoginServiceService,private routerSides: Router) { 
+  constructor(private route:ActivatedRoute,private loginService:LoginService,private routerSides: Router) { 
     this.routeSub=this.route.params.subscribe(params=>{
      this.token=params['id']
       

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginServiceService } from 'src/app/Login-Side/login-service/login-service.service';
-import { RegisterProfile } from 'src/app/Login-Side/login-service/registerprofile';
+import { Router } from '@angular/router';
+import { RegisterProfile } from 'src/app/Login-Side/interface/register-profile';
+import { LoginService } from 'src/app/Login-Side/loginservices/login-service';
+import { TokenServiceService } from 'src/app/Login-Side/loginservices/token-service.service';
+
 import { ConfirmedValidator } from './confirmed.validator';
 @Component({
   selector: 'app-regist-side',
@@ -16,7 +19,7 @@ export class RegistSideComponent implements OnInit {
 
   })
 
-  constructor(public fb: FormBuilder,private loginService:LoginServiceService) {
+  constructor(public fb: FormBuilder,private loginService:LoginService,private tokenservice:TokenServiceService,private router: Router) {
     this.registerForm=fb.group({
       registerFirstName:new FormControl('', [Validators.required,Validators.maxLength(50)]),
       registerLastName:new FormControl('', [Validators.required,Validators.maxLength(50)]),
@@ -36,12 +39,15 @@ export class RegistSideComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.tokenservice.isLoggedin$.subscribe(info=>{
+      if(info==true){
+        this.router.navigate([''])
+      }
+    })
   }
 
  public submitRegister() {
-  console.log(this.registerForm.hasError);
-  console.log(this.registerForm.get("registerCompanyName")?.value);
-  console.log()
+ 
   let tempUser:RegisterProfile=new RegisterProfile();
   if(!this.registerForm.errors){
     tempUser.companyName=this.registerForm.get("registerCompanyName")!.value;
@@ -63,8 +69,8 @@ export class RegistSideComponent implements OnInit {
     console.log(tempUser);
     console.log(this.registerForm.get("registerPostNumber")!.value)
     
-    this.loginService.registerUser(tempUser).subscribe(()=>{
-
+    this.loginService.registerUser(tempUser).subscribe((response)=>{
+        
     })
 
   }

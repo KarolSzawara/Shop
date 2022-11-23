@@ -11,10 +11,13 @@
     </mat-form-field>
 </div>
 <div class="button-padding">
-  <button mat-icon-button>
+
+  <button *ngIf="!(tokenservice.isLoggedin$|async)" mat-icon-button (click)="goToLogin()">
     <mat-icon>person</mat-icon>
   </button>
-  
+  <button *ngIf="tokenservice.isLoggedin$|async" mat-icon-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
   <button mat-icon-button (click)="goToCart()">
     <mat-icon>shopping_cart</mat-icon>
   </button>
