@@ -1,17 +1,17 @@
-<mat-grid-list cols="2" rowHeight="2:1" class="grid-list" >
+<mat-grid-list *ngIf="comlete" cols="2" rowHeight="2:1" class="grid-list" >
   <mat-grid-tile rowspan="2" colspan="1">
     <mat-card class="photo-gallery"><gallery class="gallery"  [items]="images"></gallery></mat-card>
   </mat-grid-tile>
   <mat-grid-tile  rowspan="2" colspan="1">
     <mat-card  class="card">
-      <mat-card-title class="title-card">Piła</mat-card-title>
-      <mat-card-content class="text-card">Opis</mat-card-content>
-      <mat-card-content class="text-card">Szczegóły produktu</mat-card-content>
-      <mat-card-content class="prize">Cena:  zł</mat-card-content>
+      <mat-card-title class="title-card">{{productDetails.productName}}</mat-card-title>
+      <mat-card-content class="text-card">{{productDetails.productDescription}}</mat-card-content>
+      <mat-card-content class="text-card">{{productDetails.productDetails}}</mat-card-content>
+      <mat-card-content class="prize">Cena: {{productDetails.productPrize}}  zł</mat-card-content>
       
       <mat-card-content class="size-amount">
         <mat-form-field class="size-amount" >
-          <mat-label>Ilość (dostępnych: )</mat-label>
+          <mat-label>Ilość (dostępnych: {{productDetails.quantityProduct}} )</mat-label>
           <input  name="amount" matInput  type="number"   min="0">
         </mat-form-field>
       </mat-card-content>

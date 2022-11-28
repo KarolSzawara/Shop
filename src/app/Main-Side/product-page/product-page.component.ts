@@ -26,7 +26,6 @@ export class ProductPageComponent implements OnInit {
     
     this.productListService.getCategories(this.categoryId).subscribe((response)=>{
       this.productList=response;
-      console.log(response);
       
     },(error)=>{
 

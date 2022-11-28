@@ -30,19 +30,14 @@ export class SideNavComponent implements OnInit {
   getCategories(){
     this.categoryService.getCategories().subscribe((response:Category[]): void=>{
         this.categories=response
-        console.log(response);
-        
     },(error)=>{
-      console.log(error);
       
-
     },()=>{
       this.categoryDownload=true;
       
     })
   }
   onCategory(cat: Category) {
-    console.log("blad");
     
       this.router.navigate(['category/'+cat.id]);
     }
