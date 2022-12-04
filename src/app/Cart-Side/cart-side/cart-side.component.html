@@ -7,9 +7,11 @@
         <mat-label>
             <h1 class="cart-text">Koszyk</h1>
         </mat-label>
-        <app-cart-item class="cart-item"> </app-cart-item>
+        <div *ngFor="let item of cartList">
+        <app-cart-item [item]="item" class="cart-item"> </app-cart-item>
         <mat-divider></mat-divider>
-        <app-cart-item class="cart-item"> </app-cart-item>
+        
+        </div>
     </mat-card>
 </div>
 </mat-grid-tile>

@@ -28,7 +28,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VerficationComponent } from './Login-Side/verfication/verfication.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { CartDialogComponent } from './Product-side/cart-dialog/cart-dialog.component';
+import { LogoutDialogComponent } from './Login-Side/logout-dialog/logout-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,9 @@ import { VerficationComponent } from './Login-Side/verfication/verfication.compo
     CartItemComponent,
     LoginSideComponent,
     RegistSideComponent,
-    VerficationComponent
+    VerficationComponent,
+    CartDialogComponent,
+    LogoutDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,8 @@ import { VerficationComponent } from './Login-Side/verfication/verfication.compo
     HttpClientModule,MatProgressSpinnerModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

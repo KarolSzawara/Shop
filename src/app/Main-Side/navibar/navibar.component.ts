@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TokenServiceService } from 'src/app/Login-Side/loginservices/token-service.service';
+import { LogoutDialogComponent } from 'src/app/Login-Side/logout-dialog/logout-dialog.component';
 import { SidenavServiceService } from '../services/side-nav/sidenav-service.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { SidenavServiceService } from '../services/side-nav/sidenav-service.serv
 })
 export class NavibarComponent implements OnInit {
 
-  constructor(private sideNavService: SidenavServiceService,private router: Router,public tokenservice:TokenServiceService) { 
+  constructor(private sideNavService: SidenavServiceService,private router: Router,public tokenservice:TokenServiceService,private dialog:MatDialog) { 
 
   }
 
@@ -34,5 +36,6 @@ export class NavibarComponent implements OnInit {
   }
   logout(){
     this.tokenservice.logout();
+    this.dialog.open(LogoutDialogComponent)
   }
 }

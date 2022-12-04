@@ -12,14 +12,14 @@
       <mat-card-content class="size-amount">
         <mat-form-field class="size-amount" >
           <mat-label>Ilość (dostępnych: {{productDetails.quantityProduct}} )</mat-label>
-          <input  name="amount" matInput  type="number"   min="0">
+          <input  [(ngModel)]="amount" name="amount" matInput  type="number"   min="0">
         </mat-form-field>
       </mat-card-content>
       <mat-card-content class="size-amount">
-        <button class="size-amount"  color="primary" mat-flat-button >Dodaj do koszyka</button>
+        <button class="size-amount"  color="primary" mat-flat-button (click)="addToCart()" >Dodaj do koszyka</button>
       </mat-card-content>
-      <mat-card class="failure-info">
-        
+      <mat-card class="failure-info" *ngIf="errorMessage">
+        {{errorMessage}}
       </mat-card>
     </mat-card>
   </mat-grid-tile>

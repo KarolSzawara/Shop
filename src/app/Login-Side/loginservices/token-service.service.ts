@@ -12,7 +12,7 @@ export class TokenServiceService {
   isLoggedin$=this._isLoggedin$.asObservable();
   
   constructor(private router:Router,private loginService:LoginService) {
-    const token =localStorage.getItem('jwtToken')
+    const token =localStorage.getItem('jwttoken')
     this._isLoggedin$.next(!!token)
     
     
@@ -22,13 +22,19 @@ export class TokenServiceService {
     return this.loginService.loginUser(user).pipe(
       tap((response:any)=>{
         this._isLoggedin$.next(true)
+        localStorage.clear();
         localStorage.setItem('refreshToken',response.refreshToken)
         localStorage.setItem('jwttoken',response.jwttoken)
+        console.log(response);
+        console.log(localStorage.getItem('jwttoken'));
+        console.log(localStorage.getItem('refreshToken'));
+        
+        
       })
     )
   }
   getJwtToken(){
-    return localStorage.getItem("jwtToken")
+    return localStorage.getItem("jwttoken")
   }
   logout(){
     localStorage.clear();

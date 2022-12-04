@@ -1,14 +1,13 @@
 <mat-grid-list cols="5" rowHeight="17vh" class="grid-list">
     <mat-grid-tile >
-        <img class="photo-class" src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt="Photo">
+        <img class="photo-class" src={{item.srcPhoto}} alt="Photo">
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" class="text-class">
+        
         <div class="body-text">
-            <div >Fruit Login</div>
-            <div> Radio List with 2 radio buttons</div>
-            <div > CheckBox</div>
-            <div >Textboxes x 2</div>
-            <div >Textboxes x 2</div>
+            <div style="color: black; font-size: large;" >{{item.productName}}</div>
+            <div>{{item.productDescription}} </div>
+            
             <div id="button">
                <button mat-icon-button>
             <mat-icon>delete</mat-icon>
@@ -20,11 +19,11 @@
     <mat-grid-tile class="last-grid">
         <mat-form-field class="amount-class" >
             <mat-label>Ilość</mat-label>
-            <input matInput type="number"   min="10">
+            <input matInput type="number" value={{item.orderItemQuantity}}  min="1">
             <span matSuffix>szt</span>
         </mat-form-field>
         <span class="prize-class">
-            Cena:
+            Cena: {{item.productPrize | number:'1.2-2'}} zł
         </span>
     </mat-grid-tile>
   </mat-grid-list> 
