@@ -31,6 +31,8 @@ import { VerficationComponent } from './Login-Side/verfication/verfication.compo
 import {MatDialogModule} from '@angular/material/dialog';
 import { CartDialogComponent } from './Product-side/cart-dialog/cart-dialog.component';
 import { LogoutDialogComponent } from './Login-Side/logout-dialog/logout-dialog.component';
+import { MatTableModule } from '@angular/material/table';
+import { OrderHistoryComponent } from './OrderHistory-Side/order-history/order-history.component' 
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import { LogoutDialogComponent } from './Login-Side/logout-dialog/logout-dialog.
     RegistSideComponent,
     VerficationComponent,
     CartDialogComponent,
-    LogoutDialogComponent
+    LogoutDialogComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,8 @@ import { LogoutDialogComponent } from './Login-Side/logout-dialog/logout-dialog.
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

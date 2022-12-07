@@ -5,10 +5,10 @@ export interface ProductDetails {
     productHeight: string;
     productName: string;
     productNumber: number;
-    productPrize: string;
+    productPrize: number;
     productWeight: string;
     productWidth: string;
     productcolDepth: string;
     srcPhoto: string;
-    quantityProduct: string;
+    quantityProduct: number;
 }

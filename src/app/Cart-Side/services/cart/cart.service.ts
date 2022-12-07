@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TokenServiceService } from 'src/app/Login-Side/loginservices/token-service.service';
 import { CartItem } from '../../../Main-Side/interfaces/cartitem';
+import { Cartlist } from '../../interfeces/cartlist';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,6 @@ export class CartService {
 
   constructor(private httpClient:HttpClient,private tokenService:TokenServiceService) { 
     let token =this.tokenService.getJwtToken()
-    console.log(token);
-    
     if(token!=null){
       this.headers=new HttpHeaders({'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -29,7 +28,7 @@ export class CartService {
    
   }
   getCart(){
-    return this.httpClient.get<any>(this.url,{headers:this.headers})
+    return this.httpClient.get<Cartlist[]>(this.url,{headers:this.headers})
   }
 }
 

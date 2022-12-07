@@ -38,19 +38,24 @@
 }
 .allprize-class{
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    align-content: space-between;
+    flex-wrap: wrap;
+    
 }
 .prize-card{
   width: 100%;
+}
+.cart-value{
+  font-size: large;
 }

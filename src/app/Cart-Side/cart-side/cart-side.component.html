@@ -2,6 +2,7 @@
 <mat-grid-list cols="10" rowHeight="100%" class="grid-list">
 
 <mat-grid-tile [colspan]="6" class="mat-grid-cart">    
+   
 <div class="mat-grid-cart">
     <mat-card class="cart-div">
         <mat-label>
@@ -22,12 +23,18 @@
 
     <mat-card class="prize-card">
         <mat-card-title style="margin-bottom:7%">Do zapłaty:</mat-card-title>
-        <mat-card-subtitle>Wartość produktów:</mat-card-subtitle>
+        <mat-card-content class="cart-value">Wartość produktów:{{cartPrize}} zł</mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions >
-            <button mat-raised-button color="primary" style="width:90%;margin-left: 5%;margin-right: 5%;">Przejdz do kasy</button>
-          </mat-card-actions>
+            <button mat-raised-button color="primary" style="width:90%;margin-left: 5%;margin-right: 5%;margin-bottom: 2%;">Przejdz do kasy</button> 
+            <mat-divider style="margin-bottom: 2%;"></mat-divider>
+        
+            <button mat-stroked-button color="primary" style="width:90%;margin-left: 5%;margin-right: 5%;" (click)="goToCartHistory()">Historia zamówień</button>
+         </mat-card-actions>
+        
+         
     </mat-card>
+    
     </div>
 </mat-grid-tile>
 </mat-grid-list></mat-card>

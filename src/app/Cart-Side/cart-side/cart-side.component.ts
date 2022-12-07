@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cartlist } from '../interfeces/cartlist';
 import { CartService } from '../services/cart/cart.service';
 
@@ -9,15 +10,21 @@ import { CartService } from '../services/cart/cart.service';
 })
 export class CartSideComponent implements OnInit {
   cartList!:Cartlist[]
-  constructor(private cartService:CartService) { }
-
+  constructor(private cartService:CartService,private router: Router) { }
+  cartPrize=0;
   ngOnInit(): void {
       this.cartService.getCart().subscribe((response)=>{
         this.cartList=response
         
       },(error)=>{
-        console.log(error);
+      },()=>{
+          this.cartList.forEach(item=>{
+            this.cartPrize+=item.orderItemQuantity*item.productPrize
+          })
       })
+  }
+  goToCartHistory(){
+    this.router.navigate(['history']);
   }
 
 }

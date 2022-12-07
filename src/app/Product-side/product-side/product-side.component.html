@@ -1,12 +1,29 @@
 <mat-grid-list *ngIf="comlete" cols="2" rowHeight="2:1" class="grid-list" >
   <mat-grid-tile rowspan="2" colspan="1">
-    <mat-card class="photo-gallery"><gallery class="gallery"  [items]="images"></gallery></mat-card>
+    
+    <mat-card class="photo-gallery"><div class="gallery-content"><gallery class="gallery"  [items]="images"></gallery></div></mat-card>
   </mat-grid-tile>
   <mat-grid-tile  rowspan="2" colspan="1">
     <mat-card  class="card">
-      <mat-card-title class="title-card">{{productDetails.productName}}</mat-card-title>
-      <mat-card-content class="text-card">{{productDetails.productDescription}}</mat-card-content>
+      <mat-card-title class="title-card">{{productDetails.productDescription}}</mat-card-title>
+      <mat-card-content ><h1> Opis produktu</h1></mat-card-content>
       <mat-card-content class="text-card">{{productDetails.productDetails}}</mat-card-content>
+      <mat-card-content class="text-card"><h2>Szczegóły produktu</h2>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+          <ng-container matColumnDef="name">
+            <th></th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- Cost Column -->
+          <ng-container matColumnDef="value">
+            <th></th>
+            <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+          </ng-container>
+          
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
       <mat-card-content class="prize">Cena: {{productDetails.productPrize}}  zł</mat-card-content>
       
       <mat-card-content class="size-amount">

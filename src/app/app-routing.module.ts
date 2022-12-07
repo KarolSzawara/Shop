@@ -4,6 +4,7 @@ import { CartSideComponent } from './Cart-Side/cart-side/cart-side.component';
 import { LoginSideComponent } from './login-side/login-side.component';
 import { VerficationComponent } from './Login-Side/verfication/verfication.component';
 import { ProductPageComponent } from './Main-Side/product-page/product-page.component';
+import { OrderHistoryComponent } from './OrderHistory-Side/order-history/order-history.component';
 import { ProductSideComponent } from './Product-side/product-side/product-side.component';
 import { RegistSideComponent } from './Regist-side/regis-side/regist-side.component';
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'cart',component:CartSideComponent},
   {path:'product/:id',component:ProductSideComponent},
   {path:'verfication',component:LoginSideComponent},
+  {path:'history',component:OrderHistoryComponent},
   {path:'**',component:ProductPageComponent}
 ];
 

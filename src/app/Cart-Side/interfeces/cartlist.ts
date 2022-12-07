@@ -5,6 +5,6 @@ export interface Cartlist {
     idProduct: number;
     productName: string;
     productDescription: string;
-    productPrize: string;
+    productPrize: number;
     srcPhoto: string;
 }
