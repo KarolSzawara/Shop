@@ -26,5 +26,18 @@ export class CartSideComponent implements OnInit {
   goToCartHistory(){
     this.router.navigate(['history']);
   }
+  buyCart(){
+    this.cartService.buyCart().subscribe((response)=>{
+      console.log(response); 
+    },(error)=>{
+      console.log(error);
+    },()=>{
+      this.cartPrize=0;
+      this.cartService.getCart().subscribe((response)=>{
+        this.cartList=response
+        
+      })
+    })
+  }
 
 }
