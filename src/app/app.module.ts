@@ -33,6 +33,11 @@ import { CartDialogComponent } from './Product-side/cart-dialog/cart-dialog.comp
 import { LogoutDialogComponent } from './Login-Side/logout-dialog/logout-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { OrderHistoryComponent } from './OrderHistory-Side/order-history/order-history.component' 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SearchComponentComponent } from './Main-Side/search-component/search-component.component';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AdminPanelComponent } from './admin-side/admin-panel/admin-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +53,9 @@ import { OrderHistoryComponent } from './OrderHistory-Side/order-history/order-h
     VerficationComponent,
     CartDialogComponent,
     LogoutDialogComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    SearchComponentComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +78,10 @@ import { OrderHistoryComponent } from './OrderHistory-Side/order-history/order-h
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
