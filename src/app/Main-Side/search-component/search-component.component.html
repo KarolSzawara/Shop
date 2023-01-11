@@ -1,0 +1,22 @@
+
+  <mat-form-field class="search-form-input" appearance="fill">
+    <mat-label>Szukaj</mat-label>
+    <input type="text" [(ngModel)]="query" placeholder="Select product" aria-label="Product" matInput [formControl]="productCtrl" [matAutocomplete]="auto">
+    <mat-icon matSuffix >search</mat-icon>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectProduct($event.option.value)">
+      <mat-option *ngFor="let product of filteredProducts | async" [value]="product">
+        {{product.productName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+ 
+
+  <!-- <div class="result">
+    <mat-menu #searchMenu="matMenu" xPosition="before" yPosition="below">
+      <ng-container *ngFor="let product of productList">
+        <button mat-menu-item (click)="onProductSelected(product)">
+          {{ product.productName }}
+        </button>
+      </ng-container>
+    </mat-menu>
+  </div>-->

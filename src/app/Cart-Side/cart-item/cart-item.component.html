@@ -9,7 +9,7 @@
             <div>{{item.productDescription}} </div>
             
             <div id="button">
-               <button mat-icon-button>
+               <button mat-icon-button (click)="deleteFromCart(item)">
             <mat-icon>delete</mat-icon>
         </button> 
             </div>

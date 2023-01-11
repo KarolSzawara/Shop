@@ -1,4 +1,4 @@
-<mat-grid-list cols="6" rowHeight="1:1.5" class="productlist">
+<mat-grid-list [cols]="cols" rowHeight="1:1.1" class="productlist"  >
     <mat-grid-tile  *ngFor="let product of productList"><app-product-offer [product]="product"></app-product-offer></mat-grid-tile>
     
   </mat-grid-list>

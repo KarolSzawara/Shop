@@ -9,7 +9,7 @@
             <h1 class="cart-text">Koszyk</h1>
         </mat-label>
         <div *ngFor="let item of cartList">
-        <app-cart-item [item]="item" class="cart-item"> </app-cart-item>
+        <app-cart-item [item]="item" (deleteEvent)="deleteEvent(item)" class="cart-item"> </app-cart-item>
         <mat-divider></mat-divider>
         
         </div>

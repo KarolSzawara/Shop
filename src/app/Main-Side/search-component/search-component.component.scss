@@ -1,0 +1,22 @@
+.search-form-input{
+  width: 30vw;
+}
+  .result{
+    margin-right: 20px;
+    width: 500px;
+   
+  }
+  .menu{
+    width:700px
+  }
+  .icon{
+    margin-bottom: 20px;
+  }
+  .search-form-input + .result {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 1em;
+}
+

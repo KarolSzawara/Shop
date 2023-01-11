@@ -3,12 +3,8 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="cursor" (click)="returnToMainPage()">Sklep budowlany</span>
-<div class="search-form">
-    <mat-form-field  class="search-form-input" appearance="fill">
-      <mat-label  >Szukaj</mat-label>
-      <input  type="Szukaj" matInput  >
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+<div class="search-form" *ngIf="isSearch">
+    <app-search-component></app-search-component>
 </div>
 <div class="button-padding">
 

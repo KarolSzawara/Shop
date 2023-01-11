@@ -17,4 +17,7 @@ export class ProductListService {
   getCategories(categoryId:number):Observable<ProductView[]>{
     return this.http.get<ProductView[]>(`${this.url}/${categoryId}`,{headers:this.headers})
   }
+  search(query:string){
+    return this.http.get<ProductView[]>(`${this.url}/search`,{params:{query},headers:this.headers})
+  }
 }

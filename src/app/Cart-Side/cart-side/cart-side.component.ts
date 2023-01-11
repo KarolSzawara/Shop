@@ -39,5 +39,11 @@ export class CartSideComponent implements OnInit {
       })
     })
   }
+  deleteEvent(item:Cartlist){
+      let index=this.cartList.indexOf(item)
+      if(index>-1){
+        this.cartList.splice(index,1);
+      }
+  }
 
 }

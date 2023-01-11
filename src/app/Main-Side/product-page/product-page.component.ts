@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../interfaces/product';
@@ -11,9 +12,12 @@ import { ProductListService } from '../services/product-offer/product-list.servi
 })
 export class ProductPageComponent implements OnInit {
   responeComplete:boolean=false;
+  cols=6;
   categoryId!:number
   errorMessage!:string
-  constructor(private productListService:ProductListService,private route:ActivatedRoute,private router: Router) { 
+  isMobile=false;
+  constructor(private productListService:ProductListService,private route:ActivatedRoute,private router: Router,private responsive: BreakpointObserver) { 
+    this.cols=6
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
   productList!:ProductView[]
@@ -31,6 +35,16 @@ export class ProductPageComponent implements OnInit {
       this.errorMessage=error.error.message
     },()=>{
       this.responeComplete=true
+    })
+    this.responsive.observe(Breakpoints.HandsetPortrait).subscribe(result=>{
+      this.isMobile=false
+      this.cols=6
+      if(result.matches){
+        this.isMobile=true
+        console.log("mobile");
+        
+        this.cols=1
+      }
     })
   }
   ngOnChanges(): void {

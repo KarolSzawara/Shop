@@ -31,9 +31,11 @@ export class CartService {
     return this.httpClient.get<Cartlist[]>(this.url,{headers:this.headers})
   }
   buyCart(){
-    console.log(this.headers);
     
     return this.httpClient.post<any>(`${this.url}/buy`,"buy",{headers:this.headers})
+  }
+  deleteCart(item:Cartlist){
+    return this.httpClient.post<any>(`${this.url}/delete`,item,{headers:this.headers})
   }
 }
 

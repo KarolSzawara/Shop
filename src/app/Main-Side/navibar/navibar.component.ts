@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -11,13 +12,18 @@ import { SidenavServiceService } from '../services/side-nav/sidenav-service.serv
   styleUrls: ['./navibar.component.scss']
 })
 export class NavibarComponent implements OnInit {
-
-  constructor(private sideNavService: SidenavServiceService,private router: Router,public tokenservice:TokenServiceService,private dialog:MatDialog) { 
+  isSearch=true;
+  constructor(private sideNavService: SidenavServiceService,private router: Router,public tokenservice:TokenServiceService,private dialog:MatDialog,private responsive: BreakpointObserver) { 
 
   }
 
   ngOnInit() {
-
+    this.responsive.observe(Breakpoints.HandsetPortrait).subscribe(result=>{
+      this.isSearch=true
+      if(result.matches){
+        this.isSearch=false
+      }
+    })
   }
   clickMenu() { 
     this.sideNavService.toggle();

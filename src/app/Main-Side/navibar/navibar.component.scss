@@ -20,4 +20,13 @@
   .cursor{
     cursor: pointer;
   }
+  
+@media screen and (max-width:768px){
+  .button-padding{
+    padding-left: 10vh;
+    float:right;
+    margin-right: auto;
+  }
+  
+}
  

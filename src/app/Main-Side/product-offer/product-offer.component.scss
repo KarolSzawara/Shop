@@ -12,10 +12,26 @@
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.7);
 }
 .bottomtext{
+    
     position:absolute;                  /* added */
    bottom:0;                           /* added */
    
 }
 .image{
     height: 75%;
+}
+@media screen and (max-width:768px) {
+    .card{
+        margin: auto;
+        margin-left: 3%;
+    margin-right: 3%;
+    height: 47vh;
+    }
+    .bottomtext{
+        
+        position:absolute;                  /* added */
+       bottom:0; 
+       margin-top: 5%;                          /* added */
+       
+    }
 }
