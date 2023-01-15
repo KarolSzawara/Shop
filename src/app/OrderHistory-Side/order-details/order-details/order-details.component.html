@@ -1,0 +1,24 @@
+
+      <table mat-table [dataSource]="orderList" class="mat-elevation-z0">
+        <ng-container matColumnDef="idOrder">
+          <th mat-header-cell *matHeaderCellDef>Nr Zamówienia</th>
+          <td mat-cell *matCellDef="let element"> {{element.orderItem.id}} </td>
+        </ng-container>
+      
+        <!-- Cost Column -->
+        <ng-container matColumnDef="productName">
+          <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+          <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="orderItemQuantity">
+          <th mat-header-cell *matHeaderCellDef>Cena</th>
+          <td mat-cell *matCellDef="let element"> {{element.orderItem.orderItemPrice}} zł</td>
+        </ng-container>
+        <ng-container matColumnDef="orderItemPrice">
+            <th mat-header-cell *matHeaderCellDef>Ilość</th>
+            <td mat-cell *matCellDef="let element"> {{element.orderItem.orderItemQuantity}}</td>
+          </ng-container>
+          
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>

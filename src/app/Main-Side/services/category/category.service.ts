@@ -15,4 +15,10 @@ constructor(private http:HttpClient) { }
 getCategories():Observable<Category[]>{
   return this.http.get<Category[]>(`${this.url}`,{headers:this.headers})
 }
+add(category:Category){
+  return this.http.post<any>(`${this.url}/add`,category,{headers:this.headers})
+}
+edit(category:Category){
+  return this.http.post<any>(`${this.url}/edit`,category,{headers:this.headers})
+}
 }

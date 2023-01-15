@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/Login-Side/interface/login-user';
 
@@ -43,12 +44,24 @@ export class LoginSideComponent implements OnInit {
     user.email=this.loginForm.get("loginEmail")!.value
     user.password=this.loginForm.get("loginPassword")!.value
     this.loginService.login(user).subscribe((response)=>{
-       console.log(response);
+       
        
     },(error)=>{
       this.errorMessage=error.error.message
     },()=>{
-      this.router.navigate([''])
+     let a=this.loginService.isAdmin$.subscribe(res=>{
+      if(res){
+        
+        
+        this.router.navigate(['admin'])
+      }else{
+        this.router.navigate([''])
+      }
+     })
+     location.reload()
+     a.unsubscribe();
+      
+      
     })
   }
 }

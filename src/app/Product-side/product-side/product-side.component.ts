@@ -8,6 +8,9 @@ import { DetailsService } from 'src/app/Main-Side/services/product-details/detai
 import { CartDialogComponent } from '../cart-dialog/cart-dialog.component';
 import { ProductDetails } from './interfacesProductSide/productDetails';
 import { TabElement } from './interfacesProductSide/tab-element';
+import { TokenServiceService } from 'src/app/Login-Side/loginservices/token-service.service';
+import { TempCartService } from 'src/app/Cart-Side/services/temp-cart.service';
+import { Cartlist } from 'src/app/Cart-Side/interfeces/cartlist';
 @Component({
   selector: 'app-product-side',
   templateUrl: './product-side.component.html',
@@ -22,7 +25,7 @@ amount!:number;
   images: Array<ImageItem>=[];
   public dataSource!:TabElement[];
   displayedColumns: string[] = ['name', 'value'];
-  constructor(private detailsService:DetailsService,private route:ActivatedRoute,private cartService:CartService,private dialog:MatDialog) {
+  constructor(private detailsService:DetailsService,private route:ActivatedRoute,private cartService:CartService,private dialog:MatDialog,private tokenservice:TokenServiceService,private tempCart:TempCartService) {
    }
 
   ngOnInit() {
@@ -54,14 +57,33 @@ amount!:number;
       let cartItem=new CartItem()
       cartItem.productID=this.productDetails.idProduct
       cartItem.productQuantity=this.amount
-      this.cartService.addToCart(cartItem).subscribe((response)=>{
-        this.errorMessage=""
-      },(error)=>{
-        this.errorMessage=error.error.message
-      },
-      ()=>{
+      if(this.tokenservice.isLoggedin$)
+      {
+        this.cartService.addToCart(cartItem).subscribe((response)=>
+        {
+          this.errorMessage=""
+        },(error)=>
+        {
+          this.errorMessage=error.error.message
+        },
+        ()=>{
           this.dialog.open(CartDialogComponent)
-      })
+        })
+      }
+      else{
+        let tempItem:Cartlist={
+            idCart:null,
+            orderItemQuantity:this.amount,
+            idUse:null,
+            idProduct:this.productDetails.idProduct,
+            productName:this.productDetails.productName,
+            productDescription:this.productDetails.productDescription,
+            productPrize:this.productDetails.productPrize,
+            srcPhoto:this.productDetails.srcPhoto
+        }
+          this.tempCart.addToCart(tempItem)
+      }
+      
   }
 
 }

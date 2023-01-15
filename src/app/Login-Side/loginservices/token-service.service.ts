@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, tap } from 'rxjs';
+import { TempCartService } from 'src/app/Cart-Side/services/temp-cart.service';
 import { LoginUser } from 'src/app/Login-Side/interface/login-user';
 import { LoginService } from 'src/app/Login-Side/loginservices/login-service';
 
@@ -10,25 +11,36 @@ import { LoginService } from 'src/app/Login-Side/loginservices/login-service';
 export class TokenServiceService {
   private _isLoggedin$=new BehaviorSubject<boolean>(false)
   isLoggedin$=this._isLoggedin$.asObservable();
-  
-  constructor(private router:Router,private loginService:LoginService) {
+  private _isAdmin$=new BehaviorSubject<boolean>(false)
+  isAdmin$=this._isAdmin$.asObservable();
+  constructor(private router:Router,private loginService:LoginService,private tempCart:TempCartService) {
+    
     const token =localStorage.getItem('jwttoken')
     this._isLoggedin$.next(!!token)
-    
     
   }
 
   login(user:LoginUser){
     return this.loginService.loginUser(user).pipe(
       tap((response:any)=>{
+        if(response.jwttoken=='admin'){
+          this._isAdmin$.next(true)
+          this.logout()
+          console.log(localStorage.getItem('refreshToken'));
+        }
+        else{
+          if(this.tempCart.getList().length>0){
+            this.tempCart.addToCartAll()
+          }
+          this._isAdmin$.next(false)
         this._isLoggedin$.next(true)
         localStorage.clear();
         localStorage.setItem('refreshToken',response.refreshToken)
         localStorage.setItem('jwttoken',response.jwttoken)
         console.log(response);
         console.log(localStorage.getItem('jwttoken'));
-        console.log(localStorage.getItem('refreshToken'));
         
+        }
         
       })
     )

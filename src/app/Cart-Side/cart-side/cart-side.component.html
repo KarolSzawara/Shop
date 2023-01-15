@@ -26,10 +26,10 @@
         <mat-card-content class="cart-value">Wartość produktów:{{cartPrize}} zł</mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions >
-            <button mat-raised-button color="primary" style="width:90%;margin-left: 5%;margin-right: 5%;margin-bottom: 2%;" (click)="buyCart()">Przejdz do kasy</button> 
+            <button mat-raised-button color="primary" style="width:90%;margin-left: 5%;margin-right: 5%;margin-bottom: 2%;" (click)="buyCart()" [disabled]="!(tokenservice.isLoggedin$|async)">Przejdz do kasy</button> 
             <mat-divider style="margin-bottom: 2%;"></mat-divider>
         
-            <button mat-stroked-button color="primary" style="width:90%;margin-left: 5%;margin-right: 5%;" (click)="goToCartHistory()">Historia zamówień</button>
+            <button mat-stroked-button color="primary" style="width:90%;margin-left: 5%;margin-right: 5%;" (click)="goToCartHistory()" [disabled]="!(tokenservice.isLoggedin$|async)">Historia zamówień</button>
          </mat-card-actions>
         
          

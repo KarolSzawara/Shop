@@ -37,5 +37,8 @@ export class CartService {
   deleteCart(item:Cartlist){
     return this.httpClient.post<any>(`${this.url}/delete`,item,{headers:this.headers})
   }
+  editAmount(item:Cartlist){
+    return this.httpClient.post<any>(`${this.url}/edit`,item,{headers:this.headers})
+  }
 }
 

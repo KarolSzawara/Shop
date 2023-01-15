@@ -21,7 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {GalleryModule} from "ng-gallery";
 import { CartSideComponent } from './Cart-Side/cart-side/cart-side.component';
 import { CartItemComponent } from './Cart-Side/cart-item/cart-item.component';
-import { LoginSideComponent } from './login-side/login-side.component';
+import { LoginSideComponent } from './Login-Side/login-side.component';
 import { RegistSideComponent } from './Regist-side/regis-side/regist-side.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -38,6 +38,11 @@ import { SearchComponentComponent } from './Main-Side/search-component/search-co
 import { MatMenuModule} from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AdminPanelComponent } from './admin-side/admin-panel/admin-panel.component';
+import { ProductAdminComponent } from './admin-side/admin-panel/view/product-admin/product-admin.component';
+import { CategoryAdminComponent } from './admin-side/admin-panel/view2/category-admin/category-admin.component';
+import { DialogEditCategoryComponent } from './admin-side/admin-panel/dialog-category/dialog-edit-category/dialog-edit-category.component';
+import { DialogEditProduktComponent } from './admin-side/dialog-produkt/dialog-edit-produkt/dialog-edit-produkt.component';
+import { OrderDetailsComponent } from './OrderHistory-Side/order-details/order-details/order-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +60,12 @@ import { AdminPanelComponent } from './admin-side/admin-panel/admin-panel.compon
     LogoutDialogComponent,
     OrderHistoryComponent,
     SearchComponentComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    ProductAdminComponent,
+    CategoryAdminComponent,
+    DialogEditCategoryComponent,
+    DialogEditProduktComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

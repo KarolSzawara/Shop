@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenServiceService } from 'src/app/Login-Side/loginservices/token-service.service';
 
@@ -20,7 +20,10 @@ export class OrderhistoryService {
       });
     }
   }
-  getOrderHistory(){
-    return this.httpClient.get<any>(this.url,{headers:this.headers})
+  getOrderHistory(type:number){
+    return this.httpClient.get<any>(this.url,{params:{type},headers:this.headers})
+  }
+  getOrderDetails(id:number){
+    return this.httpClient.get<any>(`${this.url}/orderitem`,{params:{id},headers:this.headers})
   }
 }

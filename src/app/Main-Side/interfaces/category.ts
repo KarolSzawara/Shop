@@ -1,7 +1,7 @@
 import { Product } from "./product";
 
 export interface Category {
-    id: number;
+    id: number|null;
     categoryName: string;
-    products: Product[];
+    products: Product[]|null;
 }

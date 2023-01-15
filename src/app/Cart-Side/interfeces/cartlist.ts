@@ -1,7 +1,7 @@
 export interface Cartlist {
-    idCart: number;
+    idCart: number|null;
     orderItemQuantity: number;
-    idUse: number;
+    idUse: number|null;
     idProduct: number;
     productName: string;
     productDescription: string;

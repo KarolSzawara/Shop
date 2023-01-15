@@ -1,0 +1,112 @@
+<div class="dialog-container">
+
+    <mat-card-title *ngIf="!isEdit" class="title">Dodaj produkt</mat-card-title>
+    <mat-card-title *ngIf="isEdit" class="title">Edytuj produkt</mat-card-title>
+    <div class="content">
+        <form [formGroup]="addForm">
+            <div class="content-containter">
+                <div class="left-side">
+                    <mat-label class="label">Szczegóły produktu</mat-label>
+
+                    <p>
+                        <mat-form-field class="form-field">
+                          <input type="text" matInput placeholder="Nazwa" formControlName="name">
+                          <mat-error *ngIf="addForm.controls['name'].hasError('required')">Brak nazwa</mat-error>
+                            
+                        </mat-form-field>
+
+                        <mat-form-field class="form-field">
+                          <textarea class="description-textarea" matInput placeholder="Opis" formControlName="descrption"></textarea>
+                          <mat-error *ngIf="addForm.controls['descrption'].hasError('required')">Brak opisu</mat-error>
+                           
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <textarea class="description-textarea" matInput placeholder="Szczegóły" formControlName="details"></textarea>
+                            <mat-error *ngIf="addForm.controls['details'].hasError('required')">Brak szczegółów</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                          <mat-select formControlName="category" placeholder="Kategoria">
+                            <mat-option> </mat-option>
+                            <mat-option *ngFor="let category of categoryList" [value]="category">
+                                {{category.categoryName}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="addForm.controls['category'].hasError('required')">Wybierz kategorię</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="form-field">
+                          <input type="number" matInput placeholder="Vat" formControlName="vat">
+                          <mat-error *ngIf="addForm.controls['vat'].hasError('required')">Brak vat</mat-error>
+                          <mat-error *ngIf="addForm.controls['vat'].hasError('pattern')">Błedny vat</mat-error>
+                      
+                        </mat-form-field>
+
+                        <mat-form-field class="form-field">
+                          <input type="number" matInput placeholder="Cena sprzedaży brutto" formControlName="sellingPrice">
+                         <mat-error *ngIf="addForm.controls['url'].hasError('required')">Brak ceny sprzedaży</mat-error>
+                            <mat-error *ngIf="addForm.controls['url'].hasError('pattern')">Błedny cena sprzedaży</mat-error>
+                        
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <input type="number" matInput placeholder="Cena zakupu brutto" formControlName="buyingPrice">
+                            <mat-error *ngIf="addForm.controls['buyingPrice'].hasError('required')">Błedna wartość</mat-error>
+                          <mat-error *ngIf="addForm.controls['buyingPrice'].hasError('pattern')">Brak ceny</mat-error>
+                      
+                        </mat-form-field>
+                        <mat-error *ngIf="erroMessage">Cena sprzedaży jest mniejsza niż cena zakupu</mat-error>
+                        <mat-form-field class="form-field">
+                            <input type="number" matInput placeholder="Ilość" formControlName="amount">
+                            <mat-error *ngIf="addForm.controls['amount'].hasError('required')">Błedna ilość</mat-error>
+                          <mat-error *ngIf="addForm.controls['amount'].hasError('pattern')">Brak ilość</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <input type="text" matInput placeholder="Szerokość" formControlName="width">
+                            <mat-error *ngIf="addForm.controls['width'].hasError('required')">Błedna szerokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['width'].hasError('pattern')">Brak szerokość</mat-error>
+                        
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <input type="text" matInput placeholder="Wysokość" formControlName="height">
+                            <mat-error *ngIf="addForm.controls['height'].hasError('required')">Błedna wysokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['height'].hasError('pattern')">Brak wysokość</mat-error>
+                        
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <input type="text" matInput placeholder="Głebokość" formControlName="depth">
+                            <mat-error *ngIf="addForm.controls['depth'].hasError('required')">Błedna głebokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['depth'].hasError('pattern')">Brak głebokość</mat-error>
+                        
+                        </mat-form-field>
+                        <mat-form-field class="form-field">
+                            <input type="number" matInput placeholder="Waga" formControlName="weight">
+                            <mat-error *ngIf="addForm.controls['weight'].hasError('required')">Błędna waga</mat-error>
+                            <mat-error *ngIf="addForm.controls['weight'].hasError('pattern')">Brak wagi</mat-error>
+                            
+                            
+                        </mat-form-field>
+                        
+                    </p>
+
+                    
+                </div>
+                <div class="right-side">
+                    <mat-label class="label">Zdjęcie</mat-label>
+                    <div class="url-adder-container">
+                        <mat-form-field class="url-input">
+                            <input type="text" matInput placeholder="Url" formControlName="url">
+                            <mat-error *ngIf="addForm.controls['url'].hasError('required')">Brak url</mat-error>
+                            <mat-error *ngIf="addForm.controls['url'].hasError('pattern')">Błedny szablon</mat-error>
+                        </mat-form-field>
+                    </div>
+                   
+                     
+                </div>
+            </div>
+            <div class="button-container">
+                <button mat-button color="primary" mat-dialog-close> Anuluj </button>
+                <button mat-flat-button type="submit" color="primary" (click)="edit()"> Dodaj </button>
+            </div>
+        </form>
+    </div>
+
+</div>
