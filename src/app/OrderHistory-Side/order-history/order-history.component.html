@@ -2,7 +2,7 @@
     <mat-card-header class="header">Zamówienia</mat-card-header>
     <mat-card-content >
         <div class="options-picker">
-        <mat-form-field appearance="fill" style="width: 20vw;">
+        <mat-form-field appearance="fill" class="option-size">
         <mat-label>Wybierz date</mat-label>
         <mat-select [(value)]="selected">
           <mat-option (tapClick)="select(option)" *ngFor="let option of options" value="option">{{option}}</mat-option>
@@ -29,7 +29,7 @@
         </ng-container>
         <ng-container matColumnDef="actions" >
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" style="width: 300px;"> 
+          <td mat-cell *matCellDef="let element" class="button-size"> 
             <button mat-button color="primary" (click)="openDetails(element)">
               Zobacz zamówienia
             </button>

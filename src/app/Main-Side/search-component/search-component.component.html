@@ -1,7 +1,7 @@
 
   <mat-form-field class="search-form-input" appearance="fill">
     <mat-label>Szukaj</mat-label>
-    <input type="text" [(ngModel)]="query" placeholder="Select product" aria-label="Product" matInput [formControl]="productCtrl" [matAutocomplete]="auto">
+    <input type="text" [(ngModel)]="query" placeholder="Szukaj" aria-label="Product" matInput [formControl]="productCtrl" [matAutocomplete]="auto">
     <mat-icon matSuffix >search</mat-icon>
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectProduct($event.option.value)">
       <mat-option *ngFor="let product of filteredProducts | async" [value]="product">

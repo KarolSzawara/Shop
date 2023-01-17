@@ -42,6 +42,7 @@ export class NavibarComponent implements OnInit {
   }
   logout(){
     this.tokenservice.logout();
+    location.reload()
     this.dialog.open(LogoutDialogComponent)
   }
 }

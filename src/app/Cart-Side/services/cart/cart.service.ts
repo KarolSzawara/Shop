@@ -40,5 +40,14 @@ export class CartService {
   editAmount(item:Cartlist){
     return this.httpClient.post<any>(`${this.url}/edit`,item,{headers:this.headers})
   }
+  addToCartWithToken(cartItem:CartItem,zet:string){
+    let head=new HttpHeaders({'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    "Accept": "application/json",
+    "Authorization":zet
+    });
+    return this.httpClient.post<any>(`${this.url}/add`,cartItem,{headers:head})
+   
+  }
 }
 

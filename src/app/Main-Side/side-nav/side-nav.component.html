@@ -4,10 +4,11 @@
 <ng-template #elseBlock>
 <mat-sidenav-container #elseBlock class='sidenav' autosize >
   <mat-sidenav #sidenav mode="over">
+    <app-search-component *ngIf="isWidth()"></app-search-component>
     <div class="sidenav-content">
-    <button mat-flat-button (click)="onCategory(categori)" class="sidenav-card" *ngFor="let categori of categories"  >
+    <mat-card (click)="onCategory(categori)" class="sidenav-card" *ngFor="let categori of categories"  >
       {{categori.categoryName}}
-    </button>
+    </mat-card>
     </div>
   </mat-sidenav>
   <mat-sidenav-content >

@@ -13,7 +13,7 @@ export class TokenServiceService {
   isLoggedin$=this._isLoggedin$.asObservable();
   private _isAdmin$=new BehaviorSubject<boolean>(false)
   isAdmin$=this._isAdmin$.asObservable();
-  constructor(private router:Router,private loginService:LoginService,private tempCart:TempCartService) {
+  constructor(private router:Router,private loginService:LoginService) {
     
     const token =localStorage.getItem('jwttoken')
     this._isLoggedin$.next(!!token)
@@ -29,16 +29,13 @@ export class TokenServiceService {
           console.log(localStorage.getItem('refreshToken'));
         }
         else{
-          if(this.tempCart.getList().length>0){
-            this.tempCart.addToCartAll()
-          }
+          
           this._isAdmin$.next(false)
         this._isLoggedin$.next(true)
         localStorage.clear();
         localStorage.setItem('refreshToken',response.refreshToken)
         localStorage.setItem('jwttoken',response.jwttoken)
-        console.log(response);
-        console.log(localStorage.getItem('jwttoken'));
+        
         
         }
         
@@ -51,6 +48,9 @@ export class TokenServiceService {
   logout(){
     localStorage.clear();
     this._isLoggedin$.next(false)
+  }
+  isLogin(){
+    return this._isLoggedin$.getValue()
   }
 
 }

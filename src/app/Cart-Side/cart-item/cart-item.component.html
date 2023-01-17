@@ -1,8 +1,8 @@
 <mat-grid-list cols="5" rowHeight="17vh" class="grid-list">
-    <mat-grid-tile >
+    <mat-grid-tile [colspan]="photCols" rowspan="1">
         <img class="photo-class" src={{item.srcPhoto}} alt="Photo">
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" class="text-class">
+    <mat-grid-tile [colspan]="textCols" rowspan="1" class="text-class">
         
         <div class="body-text">
             <div style="color: black; font-size: large;" >{{item.productName}}</div>
@@ -16,7 +16,7 @@
         </div>
         
     </mat-grid-tile>
-    <mat-grid-tile class="last-grid">
+    <mat-grid-tile [colspan]="prizeCols" rowspan="1" class="last-grid">
         <mat-form-field class="amount-class" >
             <mat-label>Ilość</mat-label>
             <input  matInput type="number"  [(ngModel)]="item.orderItemQuantity"  min="1" (blur)="onBlur()">

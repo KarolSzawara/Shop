@@ -3,6 +3,7 @@
      height: 92vh;
 }
 .sidenav-content{
+    
     flex-direction: column;
     box-sizing: border-box;
     display: flex;
@@ -10,9 +11,9 @@
     align-items: flex-start;
 }
 .sidenav-card{
-    width: 15vh;
     font-size: large;
-    
+    width:100%;
+    height: max-content;
 }
 .sidenav-card:hover{
     background-color:#3f51b54b;
@@ -23,3 +24,6 @@
   align-items: center;
   height: calc(100vh - 20px);
 }
+mat-sidenav:opened {
+    width: 300px; /* lub inna wartość */
+ }

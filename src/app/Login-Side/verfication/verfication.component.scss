@@ -13,3 +13,11 @@
     place-content:center space-around;
     align-items: center;
 }
+@media screen and (max-width: 800px){
+    .confirm{
+        height: 50%;
+        margin-top: 0;
+    width: 70%;
+    margin-bottom: 10%;
+    }
+}

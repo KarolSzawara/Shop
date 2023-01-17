@@ -7,6 +7,7 @@ import { LoginUser } from 'src/app/Login-Side/interface/login-user';
 import { ReturnToken } from 'src/app/Login-Side/interface/return-token';
 
 import { TokenServiceService } from 'src/app/Login-Side/loginservices/token-service.service';
+import { TempCartService } from '../Cart-Side/services/temp-cart.service';
 
 @Component({
   selector: 'app-login-side',
@@ -20,7 +21,7 @@ export class LoginSideComponent implements OnInit {
   errorMessage!:string
 
 
-  constructor(private router: Router,private loginService:TokenServiceService,public fb: FormBuilder) {
+  constructor(private router: Router,private loginService:TokenServiceService,public fb: FormBuilder,private tempCart:TempCartService) {
     this.loginForm=fb.group({
       loginEmail: new FormControl('', [Validators.required, Validators.email]),
       loginPassword: new FormControl('', [Validators.required])
@@ -55,11 +56,17 @@ export class LoginSideComponent implements OnInit {
         
         this.router.navigate(['admin'])
       }else{
+       
         this.router.navigate([''])
+        location.reload()
       }
+      if(this.tempCart.getList().length>0){
+          this.tempCart.addToCartAll(this.loginService.getJwtToken())
+        }
      })
-     location.reload()
-     a.unsubscribe();
+     
+     a.unsubscribe(); 
+     console.log(this.tempCart.getList());
       
       
     })

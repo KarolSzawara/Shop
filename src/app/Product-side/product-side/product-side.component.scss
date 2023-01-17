@@ -3,15 +3,27 @@
   height: 80%;
 }
 
-.gallery {
-
-  background-color: transparent;
+.photo-class {
   max-width: 100%;
-  border-radius: 3%;
-  max-height: 70%;
+    max-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+@media screen and (max-width: 800px) {
+  .photo-class {
+      max-width: 80%;
+      max-height: 80%;
+  }
 }
 .gallery-content{
-  padding-top: 15vh;
+  
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  display: flex;
 }
 .card {
   width: 90%;
@@ -46,9 +58,7 @@
     font-weight: bold;
   }
   
-  .size-amount {
-    margin: auto;
-  }
+ 
   
   .description {
     height: 60%;
@@ -76,4 +86,24 @@
     box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
 }
   
+@media screen and (max-width: 800px) {
+  .title-card, .text-card, .prize ,.header {
+      
+  }
+}
+@media screen and (max-width: 800px) {
+  .card{
+    height: auto;
+  }
+  
+  .mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    height: 90%;
+    
+}
+
+}
   

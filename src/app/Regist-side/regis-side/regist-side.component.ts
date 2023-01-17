@@ -14,6 +14,7 @@ import { ConfirmedValidator } from './confirmed.validator';
 export class RegistSideComponent implements OnInit {
 
   registerUser!:RegisterProfile;
+  errorMessage!:string
   public registerForm=new FormGroup({
     
 
@@ -26,9 +27,9 @@ export class RegistSideComponent implements OnInit {
       registerEmail: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}$")]),
       registerPassword: new FormControl('', [Validators.required,Validators.maxLength(50),Validators.minLength(8)]),
       registerConfirmPassword: new FormControl('', [Validators.required,Validators.maxLength(50),Validators.minLength(8)]),
-      registerAddress: new FormControl('', [Validators.required,Validators.maxLength(50)]),
-      registerNip:new FormControl('',[Validators.required, Validators.pattern("[0-9]{10}")]) ,    
-      registerCompanyName:new FormControl('', [Validators.required,Validators.maxLength(50)]),    
+     
+      registerNip:new FormControl('',[ Validators.pattern("[0-9]{10}")]) ,    
+      registerCompanyName:new FormControl('', [Validators.maxLength(50)]),    
       registerStreet:new FormControl('', [Validators.required,Validators.maxLength(50)]),
       registerStreetNumber:new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(10)]) , 
       registerFlatNumber:new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(10)])  ,
@@ -47,9 +48,15 @@ export class RegistSideComponent implements OnInit {
   }
 
  public submitRegister() {
- 
+  for (const controlName in this.registerForm.controls) {
+    const control = this.registerForm.get(controlName);
+    if(control)
+    if (control.invalid) {
+      console.log(`Pole ${controlName} jest niepoprawne`);
+    }
+  }
   let tempUser:RegisterProfile=new RegisterProfile();
-  if(!this.registerForm.errors){
+  if(!this.registerForm.invalid){
     tempUser.companyName=this.registerForm.get("registerCompanyName")!.value;
     tempUser.nip=this.registerForm.get("registerNip")!.value
     tempUser.firstName=this.registerForm.get("registerFirstName")!.value
@@ -62,7 +69,10 @@ export class RegistSideComponent implements OnInit {
     tempUser.phonNumber=this.registerForm.get("registerPhoneNumber")!.value
     tempUser.email=this.registerForm.get("registerEmail")!.value
     tempUser.password=this.registerForm.get("registerPassword")!.value
-    if(tempUser.companyName!=null && tempUser.nip!=null){
+    console.log(tempUser.companyName!='');
+    console.log(tempUser.nip!='');
+    
+    if(tempUser.companyName!='' && tempUser.nip!=''){
       tempUser.companyOrPerson='T';
     }
     else tempUser.companyOrPerson='F';
@@ -71,6 +81,10 @@ export class RegistSideComponent implements OnInit {
     
     this.loginService.registerUser(tempUser).subscribe((response)=>{
         
+    },(error)=>{
+      this.errorMessage=error.error.message
+    },()=>{
+      this.router.navigate(['login'])
     })
 
   }

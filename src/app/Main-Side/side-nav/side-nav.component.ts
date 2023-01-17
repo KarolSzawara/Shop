@@ -41,5 +41,13 @@ export class SideNavComponent implements OnInit {
     
       this.router.navigate(['category/'+cat.id]);
     }
+    isWidth(){
+      if(window.innerWidth<900){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
 
 }

@@ -49,9 +49,9 @@ export class DialogEditProduktComponent implements OnInit {
     details: new FormControl('',[Validators.required]),
     category: new FormControl('', [Validators.required]),
     vat: new FormControl('', [Validators.required, Validators.pattern("2[0-9]")]),
-    buyingPrice: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+([.][0-9]{1,2})?$")]),
-    sellingPrice: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+([.][0-9]{1,2})?$")]),
-    amount: new FormControl('', [Validators.required,Validators.pattern("^[1-9][0-9]*$")]),
+    buyingPrice: new FormControl(0, [Validators.required, Validators.pattern("^[0-9]+([.][0-9]{1,2})?$"),Validators.min(0.01)]),
+    sellingPrice: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+([.][0-9]{1,2})?$"),Validators.min(0.01)]),
+    amount: new FormControl(0, [Validators.required,Validators.pattern("^[0-9]*$"),Validators.min(0.01)]),
     width: new FormControl('', [Validators.required]),
     height: new FormControl('', [Validators.required]),
     depth: new FormControl('', [Validators.required]),
@@ -65,16 +65,25 @@ export class DialogEditProduktComponent implements OnInit {
       
       if(this.data) {
         console.log(data);
-        
+        if(this.data.product.product.productName)
         this.addForm.controls['name'].setValue(this.data.product.product.productName);
+        if(this.data.product.product.productDescription)
         this.addForm.controls['descrption'].setValue(this.data.product.product.productDescription)
+        if(this.data.product.product.productDetails)
         this.addForm.controls['details'].setValue(this.data.product.product.productDetails)
+        if(this.data.product.product.productHeight)
         this.addForm.controls['height'].setValue(this.data.product.product.productHeight)
+        if(this.data.product.product.productPrize)
         this.addForm.controls['sellingPrice'].setValue(this.data.product.product.productPrize)
+        if(this.data.product.product.productVat)
         this.addForm.controls['vat'].setValue(this.data.product.product.productVat)
+        if(this.data.product.product.productWeight)
         this.addForm.controls['weight'].setValue(this.data.product.product.productWeight)
+        if(this.data.product.product.productWidth)
         this.addForm.controls['width'].setValue(this.data.product.product.productWidth)
+        if(this.data.product.product.productcolDepth)
         this.addForm.controls['depth'].setValue(this.data.product.product.productcolDepth)
+
         if(this.data.product.photo){
           this.addForm.controls['url'].setValue(this.data.product.photo.srcPhoto)
         }
@@ -84,8 +93,10 @@ export class DialogEditProduktComponent implements OnInit {
           this.addForm.controls['category'].setValue(this.categoryList[this.data.product.categoryId])
         }
         if(this.data.product.warehouse){
+          console.log(this.data.product.warehouse);
+          
           this.addForm.controls['buyingPrice'].setValue(this.data.product.warehouse.prizeWarehouse)
-        this.addForm.controls['amount'].setValue(this.data.product.warehouse.quantityProduct)
+          this.addForm.controls['amount'].setValue(this.data.product.warehouse.quantityProduct)
         }
         
         
@@ -144,8 +155,21 @@ export class DialogEditProduktComponent implements OnInit {
         prod.product.productWidth=this.addForm.controls['width'].value;
         prod.product.productcolDepth=this.addForm.controls['depth'].value;
         prod.photo.srcPhoto=this.addForm.controls['url'].value;
-        prod.warehouse.prizeWarehouse=this.addForm.controls['buyingPrice'].value;
-        prod.warehouse.quantityProduct=this.addForm.controls['amount'].value;
+        if(this.data.product.warehouse==null){
+          prod.warehouse={
+            id:null,
+            quantityProduct:this.addForm.controls['amount'].value,
+            prizeWarehouse:this.addForm.controls['buyingPrice'].value
+          }
+        }
+        prod.warehouse={
+          id:this.data.product.warehouse.id,
+          quantityProduct:this.addForm.controls['amount'].value,
+          prizeWarehouse:this.addForm.controls['buyingPrice'].value
+        }
+        //prod.warehouse.quantityProduct=this.addForm.controls['amount'].value;
+        //prod.warehouse.prizeWarehouse=this.addForm.controls['buyingPrice'].value;
+        
         
         
         prod.categoryId=this.addForm.controls['category'].value.id

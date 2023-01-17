@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ImageItem} from "ng-gallery"
@@ -19,6 +19,7 @@ import { Cartlist } from 'src/app/Cart-Side/interfeces/cartlist';
 export class ProductSideComponent implements OnInit {
 productId!:number;
 amount!:number;
+rows=2;
   public comlete:boolean=false
   public productDetails!:ProductDetails;
   public errorMessage!:string
@@ -27,8 +28,9 @@ amount!:number;
   displayedColumns: string[] = ['name', 'value'];
   constructor(private detailsService:DetailsService,private route:ActivatedRoute,private cartService:CartService,private dialog:MatDialog,private tokenservice:TokenServiceService,private tempCart:TempCartService) {
    }
-
+   cols=2;
   ngOnInit() {
+    this.onResize()
     this.route.params.subscribe(params=>{
       this.productId=params['id']
     })
@@ -57,7 +59,9 @@ amount!:number;
       let cartItem=new CartItem()
       cartItem.productID=this.productDetails.idProduct
       cartItem.productQuantity=this.amount
-      if(this.tokenservice.isLoggedin$)
+      
+      
+      if(this.tokenservice.isLogin())
       {
         this.cartService.addToCart(cartItem).subscribe((response)=>
         {
@@ -81,9 +85,41 @@ amount!:number;
             productPrize:this.productDetails.productPrize,
             srcPhoto:this.productDetails.srcPhoto
         }
-          this.tempCart.addToCart(tempItem)
+        if(this.amount<this.productDetails.quantityProduct){
+            if(this.tempCart.addToCart(tempItem)>this.productDetails.quantityProduct){
+              this.tempCart.cutAmountItem(tempItem.idProduct,tempItem.orderItemQuantity);
+              this.errorMessage="Brak takiej ilość produktu";
+            }
+            else{
+              this.dialog.open(CartDialogComponent)
+            }
+        }
+        else this.errorMessage="Brak takiej ilość produktu";
+          
+          
+          
+          
       }
       
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    console.log(window.innerWidth);
+    
+    if(window.innerWidth<1700){
+        this.cols=1
+    }
+    else{
+      this.cols=2
+    }
+    if(window.innerWidth<900){
+      if(window.innerWidth<400)
+      this.rows=5
+    }
+  else{
+    this.rows=2
+  }
+
   }
 
 }

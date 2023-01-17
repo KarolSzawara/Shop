@@ -1,6 +1,11 @@
 .search-form-input{
   width: 30vw;
 }
+@media screen and (max-width: 800px){
+  .search-form-input{
+    width: 100%;
+  }
+}
   .result{
     margin-right: 20px;
     width: 500px;

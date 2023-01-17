@@ -19,3 +19,21 @@
     width: 80%  ;
     margin-left: 10%
 }
+.failure-info {
+    background-color: red;
+    font-size: normal;
+    color: white;
+    width: 60%;
+    margin: auto;
+    margin-top: 2%;
+    text-align: center;
+  }
+  .full-card{
+    width: 40%; margin: auto;margin-top: 2%
+  }
+  @media screen and (max-width: 800px){
+    .full-card{
+        width: 90%;
+    }
+    
+}

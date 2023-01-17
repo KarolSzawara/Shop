@@ -43,44 +43,45 @@
 
                         <mat-form-field class="form-field">
                           <input type="number" matInput placeholder="Cena sprzedaży brutto" formControlName="sellingPrice">
-                         <mat-error *ngIf="addForm.controls['url'].hasError('required')">Brak ceny sprzedaży</mat-error>
-                            <mat-error *ngIf="addForm.controls['url'].hasError('pattern')">Błedny cena sprzedaży</mat-error>
-                        
+                         <mat-error *ngIf="addForm.controls['sellingPrice'].hasError('required')">Brak ceny sprzedaży</mat-error>
+                            <mat-error *ngIf="addForm.controls['sellingPrice'].hasError('pattern')">Błedny cena sprzedaży</mat-error>
+                            <mat-error *ngIf="addForm.controls['sellingPrice'].hasError('min')">Wartość jest za mała</mat-error>
                         </mat-form-field>
                         <mat-form-field class="form-field">
                             <input type="number" matInput placeholder="Cena zakupu brutto" formControlName="buyingPrice">
-                            <mat-error *ngIf="addForm.controls['buyingPrice'].hasError('required')">Błedna wartość</mat-error>
-                          <mat-error *ngIf="addForm.controls['buyingPrice'].hasError('pattern')">Brak ceny</mat-error>
-                      
+                            <mat-error *ngIf="addForm.controls['buyingPrice'].hasError('required')">Brak ceny</mat-error>
+                          <mat-error *ngIf="addForm.controls['buyingPrice'].hasError('pattern')">Błedna wartość</mat-error>
+                          <mat-error *ngIf="addForm.controls['buyingPrice'].hasError('min')">Wartość jest za mała</mat-error>
                         </mat-form-field>
                         <mat-error *ngIf="erroMessage">Cena sprzedaży jest mniejsza niż cena zakupu</mat-error>
                         <mat-form-field class="form-field">
                             <input type="number" matInput placeholder="Ilość" formControlName="amount">
-                            <mat-error *ngIf="addForm.controls['amount'].hasError('required')">Błedna ilość</mat-error>
-                          <mat-error *ngIf="addForm.controls['amount'].hasError('pattern')">Brak ilość</mat-error>
+                            <mat-error *ngIf="addForm.controls['amount'].hasError('required')">Brak ilość</mat-error>
+                          <mat-error *ngIf="addForm.controls['amount'].hasError('pattern')">Błedna ilość</mat-error>
+                          <mat-error *ngIf="addForm.controls['amount'].hasError('min')">Wartość jest za mała</mat-error>
                         </mat-form-field>
                         <mat-form-field class="form-field">
                             <input type="text" matInput placeholder="Szerokość" formControlName="width">
-                            <mat-error *ngIf="addForm.controls['width'].hasError('required')">Błedna szerokość</mat-error>
-                            <mat-error *ngIf="addForm.controls['width'].hasError('pattern')">Brak szerokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['width'].hasError('required')">Brak szerokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['width'].hasError('pattern')">Błedna szerokość</mat-error>
                         
                         </mat-form-field>
                         <mat-form-field class="form-field">
                             <input type="text" matInput placeholder="Wysokość" formControlName="height">
-                            <mat-error *ngIf="addForm.controls['height'].hasError('required')">Błedna wysokość</mat-error>
-                            <mat-error *ngIf="addForm.controls['height'].hasError('pattern')">Brak wysokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['height'].hasError('required')">Brak wysokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['height'].hasError('pattern')">Błedna wysokość</mat-error>
                         
                         </mat-form-field>
                         <mat-form-field class="form-field">
                             <input type="text" matInput placeholder="Głebokość" formControlName="depth">
-                            <mat-error *ngIf="addForm.controls['depth'].hasError('required')">Błedna głebokość</mat-error>
-                            <mat-error *ngIf="addForm.controls['depth'].hasError('pattern')">Brak głebokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['depth'].hasError('required')">Brak głebokość</mat-error>
+                            <mat-error *ngIf="addForm.controls['depth'].hasError('pattern')">Błedna głebokość</mat-error>
                         
                         </mat-form-field>
                         <mat-form-field class="form-field">
-                            <input type="number" matInput placeholder="Waga" formControlName="weight">
-                            <mat-error *ngIf="addForm.controls['weight'].hasError('required')">Błędna waga</mat-error>
-                            <mat-error *ngIf="addForm.controls['weight'].hasError('pattern')">Brak wagi</mat-error>
+                            <input type="text" matInput placeholder="Waga" formControlName="weight">
+                            <mat-error *ngIf="addForm.controls['weight'].hasError('required')">Brak wagi</mat-error>
+                            <mat-error *ngIf="addForm.controls['weight'].hasError('pattern')">Błędna waga</mat-error>
                             
                             
                         </mat-form-field>

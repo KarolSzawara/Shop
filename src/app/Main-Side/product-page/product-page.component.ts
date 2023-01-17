@@ -1,5 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { MatGridList } from '@angular/material/grid-list';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../interfaces/product';
 import { ProductView } from '../interfaces/productView';
@@ -12,12 +13,13 @@ import { ProductListService } from '../services/product-offer/product-list.servi
 })
 export class ProductPageComponent implements OnInit {
   responeComplete:boolean=false;
+  
   cols=6;
   categoryId!:number
   errorMessage!:string
   isMobile=false;
   constructor(private productListService:ProductListService,private route:ActivatedRoute,private router: Router,private responsive: BreakpointObserver) { 
-    this.cols=6
+    
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
   productList!:ProductView[]
@@ -36,18 +38,56 @@ export class ProductPageComponent implements OnInit {
     },()=>{
       this.responeComplete=true
     })
-    this.responsive.observe(Breakpoints.HandsetPortrait).subscribe(result=>{
-      this.isMobile=false
-      this.cols=6
-      if(result.matches){
-        this.isMobile=true
-        console.log("mobile");
-        
-        this.cols=1
-      }
-    })
+    this.setCols()
+    
   }
   ngOnChanges(): void {
     
   }
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.setCols();
+  }
+  setCols() {
+    this.responsive.observe(Breakpoints.HandsetPortrait).subscribe(result=>{
+      
+      if(result.matches){
+        this.isMobile=true
+      
+        this.cols=1
+       
+      }
+    })
+    this.responsive.observe(Breakpoints.Small).subscribe(result=>{
+      
+      if(result.matches){
+      
+        this.cols=2
+      }
+    })
+    this.responsive.observe(Breakpoints.Medium).subscribe(result=>{
+      
+      if(result.matches){
+      
+        this.cols=3
+      }
+    })
+    
+    this.responsive.observe(Breakpoints.Large).subscribe(result=>{
+     
+      if(result.matches){
+        
+        this.cols=4
+      }
+    })
+    this.responsive.observe(Breakpoints.XLarge).subscribe(result=>{
+     
+      if(result.matches){
+        
+        this.cols=6
+      }
+    })
+  
+  }
+  
 }
